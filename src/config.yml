@@ -1,0 +1,11 @@
+# Set the equipment that will be issued to players
+# Items are followed by a name that will be set for each item.
+equipment:
+  hunter:
+    items:
+      - 283 Baton
+      - 314 Helmet
+      - 315 Police Vest
+  vampire:
+    items:
+      - 267 Shiv

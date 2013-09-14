@@ -1,0 +1,39 @@
+name: vHunter
+main: com.digitalbrainery.vHunter.vHunter
+version: 0.0.1-ALPHA
+website: meloncraft.likes-pie.com
+description: vHunter Plugin for CraftBukkit
+authors: [FilchersSoup]
+
+commands:
+  vhunter:
+    description: Base command for vHunter
+    usage: /vHunter <command>
+    aliases: [vh,vhunt]
+    
+
+permissions:
+  vhunter.*:
+    description: Give players with op everything by default
+    default: op
+    children:
+      vhunter.basic: true
+      vhunter.flag: true
+      vhunter.read: true
+      vhunter.clrflag: true
+      vhunter.signpost: true
+  vhunter.basic:
+    description: The most basic command
+    default: op
+  vhunter.flag:
+    description: Perform an action on someone
+    default: op
+  vhunter.read:
+    description: Read from a .YML
+    default: op
+  vhunter.clrflag:
+    description: Remove vHunter flag from a player.
+    default: op
+  vhunter.signpost:
+    description: Create Begin and Exit signs for vHunter.
+    default: op
