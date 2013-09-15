@@ -1,7 +1,10 @@
 package com.digitalbrainery.vHunter.tasks;
 
 import com.digitalbrainery.vHunter.vHunter;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -15,8 +18,6 @@ public class tskDayNight extends BukkitRunnable {
     private int id;
     private World world;
     private boolean day = false;
-    
-    /*final private FileConfiguration pFile = vHunter.getPlayerFile().getFile();*/
      
     public int getId()
     {
@@ -56,7 +57,6 @@ public class tskDayNight extends BukkitRunnable {
                         if ((!player.getWorld().hasStorm() || bioChk) && isOutside(player))
                         {
                             player.setFireTicks(vHunter.getPlugin().getConfig().getInt("vburn"));
-                            /*player.setFireTicks(20);*/
                         }
                     }
                 } 
