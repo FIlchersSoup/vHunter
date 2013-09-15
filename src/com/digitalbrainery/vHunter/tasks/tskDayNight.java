@@ -48,27 +48,15 @@ public class tskDayNight extends BukkitRunnable {
                 {
                     bioChk = true; /* ignore hasStorm()*/
                 }
-                
-                /* Checks if you are outside*/
-                boolean isOutside = true;
-                int yPos = (int) player.getLocation().getY();
-                for (int i = yPos + 1; i < player.getLocation().getWorld().getMaxHeight(); i++) {
-                    Location yLoc = new Location(player.getLocation().getWorld(), (int) player.getLocation().getX(), i, (int) player.getLocation().getZ());
-                    if (yLoc.getBlock() != null) {
-                        if (yLoc.getBlock().getType() != Material.AIR) {
-                            isOutside = false;
-                            break;
-                        }
-                    }
-                }
-                
+                                
                 if (flag != null)
                 { 
                     if (flag.equalsIgnoreCase("vampire"))
                     {
-                        if ((!player.getWorld().hasStorm() || bioChk) && isOutside)
+                        if ((!player.getWorld().hasStorm() || bioChk) && isOutside(player))
                         {
-                            player.setFireTicks(20);
+                            player.setFireTicks(vHunter.getPlugin().getConfig().getInt("vburn"));
+                            /*player.setFireTicks(20);*/
                         }
                     }
                 } 
@@ -82,6 +70,23 @@ public class tskDayNight extends BukkitRunnable {
     {
         return world.getTime() < 12300 || world.getTime() > 23850;
 
+    }
+    
+    /* Checks if a player is outside*/
+    public boolean isOutside(Player player)
+    {
+        int yPos = (int) player.getLocation().getY();
+
+        for (int i = yPos + 1; i < player.getLocation().getWorld().getMaxHeight(); i++) {
+            Location yLoc = new Location(player.getLocation().getWorld(), (int) player.getLocation().getX(), i, (int) player.getLocation().getZ());
+            if (yLoc.getBlock() != null) {
+                if (yLoc.getBlock().getType() != Material.AIR) {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
     }
 
 
