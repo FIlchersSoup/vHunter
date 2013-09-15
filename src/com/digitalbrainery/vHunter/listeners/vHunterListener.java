@@ -2,21 +2,24 @@ package com.digitalbrainery.vHunter.listeners;
 
 import com.digitalbrainery.vHunter.tasks.tskDayNight;
 import com.digitalbrainery.vHunter.vHunter;
+import java.util.List;
 import java.util.Locale;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.world.WorldInitEvent;
-import org.bukkit.event.world.WorldLoadEvent;
 
 /**
  *
@@ -88,25 +91,69 @@ public class vHunterListener extends vHunter implements Listener
 		}
 		else if(flag.equalsIgnoreCase("hunter"))
 		{
-			pFile.set(flagPath.toString(), null);
-			player.sendMessage(ChatColor.DARK_RED + "You have died while playing vHunter.");
-			event.setKeepLevel(true);
+                    pFile.set(flagPath.toString(), null);
+                    player.sendMessage(ChatColor.DARK_RED + "You have died while playing vHunter.");
+                    event.setKeepLevel(true);
 		}
 		else if(flag.equalsIgnoreCase("vampire"))
 		{
-			pFile.set(flagPath.toString(), null);
-			player.sendMessage(ChatColor.DARK_RED + "You have died while playing vHunter.");
-			event.setKeepLevel(true);
+                    player.setAllowFlight(false);
+                    player.setFlying(false);
+                    pFile.set(flagPath.toString(), null);
+                    player.sendMessage(ChatColor.DARK_RED + "You have died while playing vHunter.");
+                    event.setKeepLevel(true);
 		}
 	}
 	
-        /*@EventHandler
-        public void onWorldLoadEvent(WorldLoadEvent event)
+        @EventHandler
+        public void onEntityDamageByEntity(EntityDamageByEntityEvent event)
         {
-            tskDayNight vHunterDayTask = new tskDayNight();
-            vHunterDayTask.setId(Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(vHunter.getPlugin(), vHunterDayTask, 200L, 200L), event.getWorld());
-            vHunter.getPlugin().getLogger().info("onWorldLoadEvent vHunterDayTask Scheduled");
-        }*/
+            if(event.getEntity() instanceof Player && event.getDamager() instanceof Player)
+            {
+                Player attacker = (Player) event.getDamager();
+                Player player = (Player) event.getEntity();
+                      
+                String playerFlag = vHunter.getPlayerFile().getFile().getString(player.getName() + ".flag");
+                
+                StringBuilder weaknessPath = new StringBuilder("weakness.");
+		weaknessPath.append(playerFlag);
+		weaknessPath.append(".items");
+                List<Integer> weaknessItems = vHunter.getPlugin().getConfig().getIntegerList(weaknessPath.toString());
+                
+                for (Integer weakness : weaknessItems)
+		{
+                    if (playerFlag.equalsIgnoreCase("vampire") || playerFlag.equalsIgnoreCase("hunter"))
+                    {
+                        if ( attacker.getItemInHand().getTypeId() == weakness)
+                        {
+                            event.setDamage(event.getDamage()*2);
+                        }
+                    }
+                }
+            }
+            else if(event.getEntity() instanceof Player && event.getDamager() instanceof Arrow)
+            {
+                Player player = (Player) event.getEntity();
+                String playerFlag = vHunter.getPlayerFile().getFile().getString(player.getName() + ".flag");
+                
+                StringBuilder weaknessPath = new StringBuilder("weakness.");
+		weaknessPath.append(playerFlag);
+		weaknessPath.append(".items");
+                List<Integer> weaknessItems = vHunter.getPlugin().getConfig().getIntegerList(weaknessPath.toString());
+                
+                for (Integer weakness : weaknessItems)
+		{
+                    if (playerFlag.equalsIgnoreCase("vampire") || playerFlag.equalsIgnoreCase("hunter"))
+                    {
+                        if (weakness == 262)
+                        {
+                            event.setDamage(event.getDamage()*2);
+                        }
+                    }
+                }
+                
+            }
+        }
         
         @EventHandler
         public void onWorldInitEvent(WorldInitEvent event)
