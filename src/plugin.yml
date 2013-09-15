@@ -5,6 +5,8 @@ website: meloncraft.likes-pie.com
 description: vHunter Plugin for CraftBukkit
 authors: [FilchersSoup]
 
+load: STARTUP
+
 commands:
   vhunter:
     description: Base command for vHunter
