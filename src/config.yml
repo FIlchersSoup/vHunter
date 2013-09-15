@@ -3,9 +3,7 @@
 equipment:
   hunter:
     items:
-      - 283 Baton
-      - 314 Helmet
-      - 315 Police Vest
+      - 268 Stake
   vampire:
     items:
-      - 267 Shiv
+      - 267 Vampire Blade
