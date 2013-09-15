@@ -1,4 +1,4 @@
-# Set the equipment that will be issued to players
+# The equipment that will be issued to players when they join.
 # Items are followed by a name that will be set for each item.
 equipment:
   hunter:
@@ -10,3 +10,14 @@ equipment:
 # Set the number of ticks a player will burn if they are out in the sun
 # as a vampire - the schedule checks for burn every 200 ticks (10 Seconds)
 vburn: 100
+# The items for each class weakness
+weakness:
+  hunter:
+    items:
+      - 267
+  vampire:
+    items:
+      - 268
+      - 261
+      - 262
+      - 280
