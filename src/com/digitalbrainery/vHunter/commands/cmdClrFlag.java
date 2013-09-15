@@ -26,7 +26,10 @@ public class cmdClrFlag extends vHunterCmdHandler
 			{
 			StringBuilder flagPath = new StringBuilder(target.getName());
 			flagPath.append(".flag");
-			
+                        
+			target.setAllowFlight(false);
+                        target.setFlying(false);
+                        
 			final FileConfiguration pFile = vHunter.getPlayerFile().getFile();			
 			pFile.set(flagPath.toString(), null);
 		
