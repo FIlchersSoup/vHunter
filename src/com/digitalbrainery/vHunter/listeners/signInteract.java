@@ -46,6 +46,8 @@ public class signInteract extends vHunterListener
 				else
 				{
 					flag = "vampire";
+                                        player.setAllowFlight(true);
+                                        player.setFlying(true);
 				}
 				
 				pFile.set(flagPath.toString(), flag);
@@ -105,7 +107,9 @@ public class signInteract extends vHunterListener
 			}
 			else if(flag.equalsIgnoreCase("hunter") || flag.equalsIgnoreCase("vampire"))
 			{		
-				pFile.set(flagPath.toString(), null);
+				player.setAllowFlight(false);
+                                player.setFlying(false);
+                                pFile.set(flagPath.toString(), null);
 				player.sendMessage(ChatColor.GOLD + "You have exited vHunter!");
 			}
 		}
