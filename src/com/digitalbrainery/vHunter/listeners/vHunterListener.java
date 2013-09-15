@@ -1,7 +1,9 @@
 package com.digitalbrainery.vHunter.listeners;
 
+import com.digitalbrainery.vHunter.tasks.tskDayNight;
 import com.digitalbrainery.vHunter.vHunter;
 import java.util.Locale;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -11,11 +13,10 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.world.WorldInitEvent;
+import org.bukkit.event.world.WorldLoadEvent;
 
 /**
  *
@@ -99,21 +100,19 @@ public class vHunterListener extends vHunter implements Listener
 		}
 	}
 	
-	@EventHandler
-	public void onPlayerDropItem (final PlayerDropItemEvent event)
-	{
-		
-	}
-	
-	@EventHandler
-	public void onInventoryDrag (final InventoryDragEvent event)
-	{
-		
-	}
-	
-	@EventHandler
-	public void onInventoryMoveItem (final InventoryMoveItemEvent event)
-	{
-		
-	}
+        /*@EventHandler
+        public void onWorldLoadEvent(WorldLoadEvent event)
+        {
+            tskDayNight vHunterDayTask = new tskDayNight();
+            vHunterDayTask.setId(Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(vHunter.getPlugin(), vHunterDayTask, 200L, 200L), event.getWorld());
+            vHunter.getPlugin().getLogger().info("onWorldLoadEvent vHunterDayTask Scheduled");
+        }*/
+        
+        @EventHandler
+        public void onWorldInitEvent(WorldInitEvent event)
+        {
+            tskDayNight vHunterDayTask = new tskDayNight();
+            vHunterDayTask.setId(Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(vHunter.getPlugin(), vHunterDayTask, 200L, 200L), event.getWorld());
+            vHunter.getPlugin().getLogger().info("onWorldInitEvent vHunterDayTask Scheduled");
+        }
 }
