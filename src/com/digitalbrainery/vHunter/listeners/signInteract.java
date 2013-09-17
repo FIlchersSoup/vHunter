@@ -31,7 +31,7 @@ public class signInteract extends vHunterListener
 		final FileConfiguration pFile = vHunter.getPlayerFile().getFile();
 		final FileConfiguration configFile = vHunter.getPlugin().getConfig();
 				
-		if ("<-vHunter->".equals(sign.getLine(0)) && "Enter".equalsIgnoreCase(sign.getLine(1)))
+		if ("§a<-vHunter->".equals(sign.getLine(0)) && "Enter".equalsIgnoreCase(sign.getLine(1)))
 		{
 			String flag = pFile.getString(flagPath.toString());			
 			if (flag == null)
@@ -98,7 +98,7 @@ public class signInteract extends vHunterListener
 				player.sendMessage(message.toString());
 			}		
 		}			
-		else if ("<-vHunter->".equals(sign.getLine(0)) && "Exit".equalsIgnoreCase(sign.getLine(1)))
+		else if ("§a<-vHunter->".equals(sign.getLine(0)) && "Exit".equalsIgnoreCase(sign.getLine(1)))
 		{
 			String flag = pFile.getString(flagPath.toString());			
 			if (flag == null)
