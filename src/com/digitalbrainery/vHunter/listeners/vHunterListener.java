@@ -68,8 +68,16 @@ public class vHunterListener extends vHunter implements Listener
 		{
 			if ("<-vHunter->".equals(event.getLine(0)) && !event.getPlayer().hasPermission("vhunter.signpost"))
 			{
-				event.getBlock().breakNaturally();
+                            event.getBlock().breakNaturally();
 			}
+                        else if ("§a<-vHunter->".equals(event.getLine(0)) && !event.getPlayer().hasPermission("vhunter.signpost"))
+                        {
+                            event.getBlock().breakNaturally();
+                        }
+                        else if ("<-vHunter->".equals(event.getLine(0)) || "§a<-vHunter->".equals(event.getLine(0)))
+                        {
+                            event.setLine(0, "§a<-vHunter->");
+                        }
 		}
 	}
 	
