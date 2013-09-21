@@ -1,6 +1,6 @@
 name: vHunter
 main: com.digitalbrainery.vHunter.vHunter
-version: 0.0.1-ALPHA
+version: 0.1.1-BETA
 website: meloncraft.likes-pie.com
 description: vHunter Plugin for CraftBukkit
 authors: [FilchersSoup]
@@ -28,7 +28,7 @@ permissions:
     description: Remove vHunter flag from a player.
     default: op
   vhunter.signpost:
-    description: Create Begin and Exit signs for vHunter.
+    description: Create Enter and Exit signs for vHunter.
     default: op
   vhunter.vwarp:
     description: Warp to and from the vampire world.
