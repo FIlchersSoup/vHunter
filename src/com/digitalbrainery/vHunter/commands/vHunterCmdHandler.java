@@ -19,16 +19,28 @@ public class vHunterCmdHandler extends vHunter
 			
 			if (args.length == 0)
 			{
+                            sender.sendMessage("/vHunter");
+                            sender.sendMessage("      clrflag <player>");
+                            sender.sendMessage("      vwarp");
+                            return true;
 			}
 			else if (args[0].equalsIgnoreCase("clrflag") && sender.hasPermission("vhunter.clrflag"))
 			{ 
 				final cmdClrFlag cmd = new cmdClrFlag();
 				return cmd.run(sender, args);
-			}
-			
-			sender.sendMessage("/vHunter");
-			sender.sendMessage("      clrflag <player>");
-			return true;
+                        }
+                        else if (args[0].equalsIgnoreCase("vwarp") && sender.hasPermission("vhunter.vwarp"))
+			{ 
+				final cmdvWarp cmd = new cmdvWarp();
+				return cmd.run(sender, args);
+                        }
+                        else if (sender.hasPermission("vhunter.basic"))
+                        {
+                            sender.sendMessage("/vHunter");
+                            sender.sendMessage("      clrflag <player>");
+                            sender.sendMessage("      vwarp");
+                            return true;
+                        }
 		}
 		
 		return true;		
