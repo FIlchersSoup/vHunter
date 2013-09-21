@@ -1,5 +1,14 @@
-# The equipment that will be issued to players when they join.
+# vHunter Config
+# EQUIPMENT = The equipment that will be issued to players when they join.
 # Items are followed by a name that will be set for each item.
+#
+# VBURN = Set the number of ticks a player will burn if they are out in the sun
+# as a vampire - the schedule checks for burn every 200 ticks (10 Seconds)
+#
+# WEAKNESS = The items for each class weakness
+#
+# WORLD = Set the world a player will spawn in when they enter the game
+# Leave blank if you want them to remain in the same world
 equipment:
   hunter:
     items:
@@ -7,10 +16,7 @@ equipment:
   vampire:
     items:
       - 267 Vampire Blade
-# Set the number of ticks a player will burn if they are out in the sun
-# as a vampire - the schedule checks for burn every 200 ticks (10 Seconds)
 vburn: 100
-# The items for each class weakness
 weakness:
   hunter:
     items:
@@ -21,3 +27,4 @@ weakness:
       - 261
       - 262
       - 280
+world: woodbury
