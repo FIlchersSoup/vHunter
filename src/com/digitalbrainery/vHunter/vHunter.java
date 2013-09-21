@@ -2,6 +2,7 @@ package com.digitalbrainery.vHunter;
 
 import com.digitalbrainery.vHunter.commands.vHunterCmdHandler;
 import com.digitalbrainery.vHunter.listeners.vHunterListener;
+import org.bukkit.WorldCreator;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.Plugin;
@@ -16,6 +17,7 @@ public class vHunter extends JavaPlugin {
  
 	private static vHunterPlayerFile playerFile = new vHunterPlayerFile();
 	private static Plugin plugin;
+        final vHunterWorld vHunterWorld = new vHunterWorld();
 	
 	@Override
 	public void onEnable(){
@@ -25,6 +27,7 @@ public class vHunter extends JavaPlugin {
 		playerFile.saveDefaultFile();
 		this.saveDefaultConfig();
 		getLogger().info("vHunter has been enabled!");
+                vHunterWorld.loadWorlds();               
 	}
  
 	@Override
