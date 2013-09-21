@@ -5,8 +5,6 @@ website: meloncraft.likes-pie.com
 description: vHunter Plugin for CraftBukkit
 authors: [FilchersSoup]
 
-load: STARTUP
-
 commands:
   vhunter:
     description: Base command for vHunter
@@ -20,22 +18,18 @@ permissions:
     default: op
     children:
       vhunter.basic: true
-      vhunter.flag: true
-      vhunter.read: true
       vhunter.clrflag: true
       vhunter.signpost: true
+      vhunter.vwarp: true
   vhunter.basic:
     description: The most basic command
-    default: op
-  vhunter.flag:
-    description: Perform an action on someone
-    default: op
-  vhunter.read:
-    description: Read from a .YML
     default: op
   vhunter.clrflag:
     description: Remove vHunter flag from a player.
     default: op
   vhunter.signpost:
     description: Create Begin and Exit signs for vHunter.
+    default: op
+  vhunter.vwarp:
+    description: Warp to and from the vampire world.
     default: op
