@@ -1,10 +1,12 @@
 package com.digitalbrainery.vHunter.listeners;
 
+import com.digitalbrainery.vHunter.commands.cmdvWarp;
 import com.digitalbrainery.vHunter.vHunter;
 import java.util.List;
 import java.util.Random;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Sign;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -89,6 +91,11 @@ public class signInteract extends vHunterListener
 					player.getInventory().addItem(item);
 					itemName = new StringBuilder();					
 				}
+                                
+                                pFile.set(player.getName()+".world", player.getWorld().getName());
+                                String[] args = { "vWarp" };
+                                final cmdvWarp cmd = new cmdvWarp();
+                                cmd.run((CommandSender)player,args);
 			}
 			else if(flag.equalsIgnoreCase("hunter") || flag.equalsIgnoreCase("vampire"))
 			{
@@ -111,6 +118,11 @@ public class signInteract extends vHunterListener
                                 player.setFlying(false);
                                 pFile.set(flagPath.toString(), null);
 				player.sendMessage(ChatColor.GOLD + "You have exited vHunter!");
+                                
+                                String[] args = { "vWarp", pFile.getString(player.getName()+".world") };
+                                final cmdvWarp cmd = new cmdvWarp();
+                                cmd.run((CommandSender)player,args);
+                                pFile.set(player.getName()+".world", null);
 			}
 		}
 	
