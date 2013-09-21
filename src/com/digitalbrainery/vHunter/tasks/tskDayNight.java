@@ -81,7 +81,9 @@ public class tskDayNight extends BukkitRunnable {
             Location yLoc = new Location(player.getLocation().getWorld(), (int) player.getLocation().getX(), i, (int) player.getLocation().getZ());
             if (yLoc.getBlock() != null) {
                 if (yLoc.getBlock().getType() != Material.AIR) {
-                    return false;
+                    if(yLoc.getBlock().getType() != Material.GLASS) {
+                        return false;
+                    }
                 }
             }
         }
