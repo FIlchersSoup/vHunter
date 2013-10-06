@@ -167,9 +167,14 @@ public class vHunterListener extends vHunter implements Listener
         @EventHandler
         public void onWorldInitEvent(WorldInitEvent event)
         {
-            tskDayNight vHunterDayTask = new tskDayNight();
-            vHunterDayTask.setId(Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(vHunter.getPlugin(), vHunterDayTask, 200L, 200L), event.getWorld());
-            vHunter.getPlugin().getLogger().info("onWorldInitEvent vHunterDayTask Scheduled");
+            if (event.getWorld().getName().equalsIgnoreCase(vHunter.getPlugin().getConfig().getString("world")))
+            {
+                String logMessage = "vHunterDayTask Scheduled for " + event.getWorld().getName();
+                tskDayNight vHunterDayTask = new tskDayNight();
+                vHunterDayTask.setId(Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(vHunter.getPlugin(), vHunterDayTask, 200L, 200L), event.getWorld());
+                vHunter.getPlugin().getLogger().info(logMessage);
+            }
+            
         }
         
         @EventHandler
