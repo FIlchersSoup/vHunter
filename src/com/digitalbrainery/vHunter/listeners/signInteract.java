@@ -38,7 +38,6 @@ public class signInteract extends vHunterListener
 			String flag = pFile.getString(flagPath.toString());			
 			if (flag == null)
 			{
-				player.sendMessage(ChatColor.GOLD + "Welcome to vHunter!");
 				final Random rand1 = new Random();
 				
 				if(rand1.nextInt(2) == 1)
@@ -51,6 +50,8 @@ public class signInteract extends vHunterListener
                                         player.setAllowFlight(true);
                                         player.setFlying(true);
 				}
+                                
+                                player.sendMessage(ChatColor.GOLD + "Welcome to vHunter... " + flag.toUpperCase() + "!");
 				
 				pFile.set(flagPath.toString(), flag);
 					
